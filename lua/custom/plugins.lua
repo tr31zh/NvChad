@@ -17,14 +17,14 @@ local plugins = {
       "neovim/nvim-lspconfig",
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { "j-hui/fidget.nvim", opts = {} },
       -- Additional lua configuration, makes nvim stuff amazing!
-      'folke/neodev.nvim',
+      "folke/neodev.nvim",
     },
     config = function()
       require("mason-lspconfig").setup()
       require "custom.configs.mason_lspconfig"
-      require "custom.plugins.autoformat"
+      -- require "custom.plugins.autoformat"
     end,
   },
   -- Better notifications
@@ -32,26 +32,25 @@ local plugins = {
     "rcarriga/nvim-notify",
     config = function()
       require("notify").setup()
-      vim.notify = require("notify")
+      vim.notify = require "notify"
     end,
   },
   {
-    'stevearc/dressing.nvim',
+    "stevearc/dressing.nvim",
     opts = {},
     lazy = false,
     dependencies = { "nvim-web-devicons" },
     config = function()
       require("diffview").setup()
     end,
-
   },
   {
-    'echasnovski/mini.indentscope',
-    version = '*',
+    "echasnovski/mini.indentscope",
+    version = "*",
     lazy = false,
     dependencies = { "nvim-web-devicons" },
     config = function()
-      require("mini.indentscope").setup({ draw = { delay = 50 } })
+      require("mini.indentscope").setup { draw = { delay = 50 } }
     end,
   },
   {
@@ -65,7 +64,7 @@ local plugins = {
     keys = function()
       ---@type LazyKeys[]
       local ret = {}
-      for _, key in ipairs({ "f", "F", "t", "T" }) do
+      for _, key in ipairs { "f", "F", "t", "T" } do
         ret[#ret + 1] = { key, mode = { "n", "x", "o" }, desc = key }
       end
       return ret
@@ -77,25 +76,27 @@ local plugins = {
     lazy = false,
     config = function()
       require("notify").setup()
-      -- vim.notify = require("illuminate")
     end,
   },
   {
     "nvim-telescope/telescope-frecency.nvim",
     lazy = false,
     config = function()
-      require "telescope".load_extension("frecency")
+      require("telescope").load_extension "frecency"
     end,
-    dependencies = { "kkharji/sqlite.lua" }
+    dependencies = { "kkharji/sqlite.lua" },
   },
   {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
     lazy = false,
     config = function()
-      require "telescope".load_extension("file_browser")
+      require("telescope").load_extension "file_browser"
     end,
-
+  },
+  {
+    "sbdchd/neoformat",
+    lazy = false,
   },
 }
 
